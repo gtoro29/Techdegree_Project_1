@@ -1,51 +1,73 @@
 /* Treehouse FSJS Techdegree:
 project 1 - A Random Quote Generator, Submitted by G.Toro, 6/2019 */
 
-//This array contains the data of the quotes, sources, years if any, and quote type.
+
+//Array contains quote data
 var quotes = [{
-        quote: "Run often.Run long.But never outrun your joy of running.",
-        source: "Julie Isphording, former Olympic runner",
+        quote: "Run often. Run long .But never outrun your joy of running.",
+        source: "Julie Isphording, former Olympic runner ",
         year: "1961-Present",
-        type: " running, motivational"
+        citation: " ",
+        type: "running, motivational"
     },
     {
-        quote: "Never underestimate the power of dreams and the influence of the human spirit. We are all the same in this notion. The potential for greatness lives within each of us.",
-        source: "Wilma Rudolph, Three-Time Olympic Gold Champ",
+        quote: "I'm more than an entrepreneur. So I just leave it blank or self-employed.",
+        source: "Oprah Winfrey ",
         year: "1940-1994",
+        citation: "Spech at Spelman College",
         type: "inspirational"
     },
     {
-        quote: "A race is a work of art that people can look at and be affected in as many ways theyre capable of understanding.",
-        source: " Steve Prefontaine, Seven World Records",
+        quote: "To give anything else than your best is to sacrifice the gift.",
+        source: " Steve Prefontaine, Seven World Records ",
         year: "1951-1975",
+        citation: " ",
         type: "inspirational, sports"
     },
     {
         quote: "Don't dream of winning, train for it!",
-        source: " Mo Farah, Olympic long-distance runner",
+        source: " Mo Farah, Olympic long-distance runner ",
         year: "1983-Present",
+        citation: " ",
         type: "running, motivational"
     },
     {
         quote: "When anyone tells me I can 't do anything, I'm just not listening anymore.",
-        source: "Florence Griffith Joyner, Three-Time Gold Olympian",
-        year: " ", //1959-1998
+        source: "Florence Griffith Joyner, Three-Time Gold Olympian ",
+        year: " ", //1959-1998 
         type: " "
     }
 ];
 
-//Random quote generator function--using the length of the array of to generate a random quote, then returning the quote.
+//extra credit---function that adds a timer to the page changing colors and quotes every 6s.
+function startTimer() {
+    let timer = setInterval(printQuote, 6000);
+}
+//calling the function
+startTimer();
+
+//Random quote generator function--uses the length of the array of quotes to generate a random quote, then it returns it
 function getRandomQuote() {
-    var randomQuote = Math.floor(Math.random() * quotes.length);
+    let randomQuote = Math.floor(Math.random() * quotes.length);
+
     return quotes[randomQuote];
+}
+//etra credit---dunction that adds a random color change when quotes change
+function getRandomColor() {
+    var randomColor;
+    let red = Math.floor(Math.random() * 256);
+    let green = Math.floor(Math.random() * 256);
+    let blue = Math.floor(Math.random() * 256);
+    randomColor = 'rgb(' + red + ',' + green + ',' + blue + ')';
+    return randomColor;
 }
 
 //this function prints the quote onto the page
 function printQuote() {
     var currentQuote = getRandomQuote();
     //this line declares a local variable: html
-    var html = "<p class='quote'> " + currentQuote.quote + "</p>";
-    //this line adds the source property to the local html variable---adds to string
+    let html = "<p class='quote'> " + currentQuote.quote + "</p>";
+    //this line adds the source property to html---adds to the string
     html += "<p class='source'> " + currentQuote.source + "</p>";
     //this statement verifies if there is a type property and---adds it to the string
     if ("type" in currentQuote) {
@@ -55,12 +77,25 @@ function printQuote() {
     if ("year" in currentQuote) {
         html += "<span class='year'>" + currentQuote.year + "</span>";
     }
-    //this line of code completes the html string
+    //this statement verifies if there is a citation property and---adds it to the string
+    if ("citation" in currentQuote) {
+        html += "<span class='citation'>" + currentQuote.citation + "</span>";
+    }
+    //this line completes the html string
     document.getElementById("quote-box").innerHTML = html;
-    //this line completes the clickable button
-    document.getElementById("loadQuote");
-};
-//this loads a randomly generated quote each time the button is clicked---no changes made to the code below, per instructions. 
-{
+    //using background color function with elementID
+    document.getElementById('bgcolor').style.backgroundColor = getRandomColor();
+    //using clickability of button with elementID
     document.getElementById('loadQuote').addEventListener("click", printQuote);
 };
+
+
+/// References used:
+
+/// MDN - https://developer.mozilla.org/en-US/
+/// Google - https://www.google.com/
+/// Teamtreehouse Q&A RGB color generator function - https://teamtreehouse.com/community/my-code-for-this-challenge
+/// Teamtreehouse Create a Timer in JS - https://teamtreehouse.com/library/create-a-timer-in-javascript
+/// Teamtreehouse Project 1 Study Guide PDF - https://drive.google.com/file/d/1s5grutGuQFwJcQP8bFwEI69Q8FCkGdDk/view
+/// Teamtreehouse Project 1 Instructions and information - https://teamtreehouse.com/projects/a-random-quote-generator
+/// Slack Channel Treehouse Fullstack Javascript #review-my-project
