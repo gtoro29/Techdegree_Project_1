@@ -16,7 +16,7 @@ var quotes = [{
     },
     {
         quote: "A race is a work of art that people can look at and be affected in as many ways theyre capable of understanding.",
-        source: " Steve Prefontaine, Holder of Seven World Records",
+        source: " Steve Prefontaine, Seven World Records",
         year: "1951-1975",
         type: "inspirational, sports"
     },
@@ -46,7 +46,7 @@ function printQuote() {
     //this line declares a local variable: html
     var html = "<p class='quote'> " + currentQuote.quote + "</p>";
     //this line adds the source property to the local html variable---adds to string
-    html += "<p class='source'> " + currentQuote.source;
+    html += "<p class='source'> " + currentQuote.source + "</p>";
     //this statement verifies if there is a type property and---adds it to the string
     if ("type" in currentQuote) {
         html += "<span class='type'>" + currentQuote.type + "</span>";
