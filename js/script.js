@@ -2,12 +2,15 @@
 project 1 - A Random Quote Generator, Submitted by G.Toro, 6/2019 */
 
 
+//moved to top of code to properly display quote to page with full functionalities.
+document.getElementById('loadQuote').addEventListener("click", printQuote, false);
+
+
 //Array contains quote data
 var quotes = [{
         quote: "Run often. Run long .But never outrun your joy of running.",
         source: "Julie Isphording, former Olympic runner ",
         year: "1961-Present",
-        citation: " ",
         type: "running, motivational"
     },
     {
@@ -21,21 +24,17 @@ var quotes = [{
         quote: "To give anything else than your best is to sacrifice the gift.",
         source: " Steve Prefontaine, Seven World Records ",
         year: "1951-1975",
-        citation: " ",
         type: "inspirational, sports"
     },
     {
         quote: "Don't dream of winning, train for it!",
         source: " Mo Farah, Olympic long-distance runner ",
         year: "1983-Present",
-        citation: " ",
         type: "running, motivational"
     },
     {
         quote: "When anyone tells me I can 't do anything, I'm just not listening anymore.",
-        source: "Florence Griffith Joyner, Three-Time Gold Olympian ",
-        year: " ", //1959-1998 
-        type: " "
+        source: "Florence Griffith Joyner, Three-Time Gold Olympian"
     }
 ];
 
@@ -62,6 +61,20 @@ function getRandomColor() {
     return randomColor;
 }
 
+//Reviewers feedback after 1st submission:
+
+/* Elements that Need Work
+`printQuote` function --- Reviewed the overall problems with the function. Moved printQuote to top of code.
+
+Function is not named printQuote --- Line 72 function printQuote() is defined with the specs and reqs after revision
+
+Function does not call the getRandomQuote function. --- found I had a variable for the getRandomQuote function but not calling the function inside the printQuote function.
+
+Function does not print a quote to the page. --- It was not printing quote to page until time began. Fixed by calling function on line 4
+
+Function prints to the page but without using the appropriate HTML template. --- Reviewed and found several issues with the properties such as the quotations for empty strings. Learned I didn't have to have the empty string. I should've tested the code without the ''. 
+*/
+
 //this function prints the quote onto the page
 function printQuote() {
     var currentQuote = getRandomQuote();
@@ -80,14 +93,19 @@ function printQuote() {
     //this statement verifies if there is a citation property and---adds it to the string
     if ("citation" in currentQuote) {
         html += "<span class='citation'>" + currentQuote.citation + "</span>";
+        //added a call to function for random quote.
     }
+    getRandomQuote();
+
     //this line completes the html string
     document.getElementById("quote-box").innerHTML = html;
     //using background color function with elementID
     document.getElementById('bgcolor').style.backgroundColor = getRandomColor();
-    //using clickability of button with elementID
-    document.getElementById('loadQuote').addEventListener("click", printQuote);
+
 };
+//Calling the function printQuote
+printQuote();
+
 
 
 /// References used:
